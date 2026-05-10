@@ -1,0 +1,32 @@
+{
+    "name": "Cash to Continental Coins",
+    "description": "Convert spending cash into Continental Coins.",
+    "author": "StuTitor",
+    "version": "1.0.0",
+    "blt_version": 2,
+    "persist_scripts": [
+        {
+            "global": "UtilFunctions",
+            "script_path": "libraries/UtilFunctions.lua"
+        },
+        {
+            "global": "CustomMenuClass",
+            "script_path": "libraries/CustomMenuClass.lua"
+        },
+        {
+            "global": "CTC",
+            "script_path": "classes/CTC.lua"
+        }
+    ],
+    "keybinds": [
+        {
+            "keybind_id": "CTCKeybindMenuMain",
+            "name": "Cash to Continental Coins",
+            "description": "Opens the converter menu.",
+            "script_path": "keybinds/menus/main.lua",
+            "run_in_menu": true,
+            "run_in_game": false,
+            "localized": false
+        }
+    ]
+}
