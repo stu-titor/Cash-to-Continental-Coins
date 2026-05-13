@@ -443,12 +443,6 @@ if not CustomMenuClass then
 		if p == 0 then
 			return
 		end
-		if self.currentMenu and self.currentPage then
-			if self.currentMenu ~= name then
-				self.previousMenu = self.currentMenu
-				self.previousPage = self.currentPage
-			end
-		end
 		self.currentMenu = name
 		self.currentPage = p
 		--[[ Set Title Text ]]--
@@ -616,42 +610,6 @@ if not CustomMenuClass then
 					clbk = function() if #self.menus[name].pages > 1 then local p = 0 if self.currentPage == #self.menus[name].pages then p = 1 else p = self.currentPage + 1 end self:openMenu(name, p) end end
 				})
 			end
-			--[[ Previous Menu Button ]]--
-			buttonRectHeight = self.menus[name].optionFontSize + 4
-			buttonRectX = self.mainMenuBorderWidth + self.indentColumns
-			if #self.menus[name].pages < 2 then
-				buttonRectY = (self.panelNavigationDisplay:h() / 2) - (buttonRectHeight / 2)
-			else
-				buttonRectY = self.panelNavigationDisplay:h() - self.mainMenuBorderWidth - self.indentColumns - buttonRectHeight
-			end
-			drawRect(self.panelNavigationDisplay, "previous_menu_button_rect", buttonRectX, buttonRectY, buttonRectWidth, buttonRectHeight, self.menus[name].buttonRectHighlightColor, { rectLayer = self.baseLayer + 3 }):set_visible(false)
-			self.panelNavigationDisplay:text({name = "previous_menu_button_text", text = "Previous Menu", x = buttonRectX+6, y = buttonRectY+2, layer = self.baseLayer + 4, color = self.menus[name].optionColor, font = self.menus[name].optionFont, font_size = self.menus[name].optionFontSize})
-			table.insert(self.activeButtons, {
-				text = "previous_menu_button_text", 
-				rect = "previous_menu_button_rect",
-				help = "Opens the Previously Opened Menu",
-				normalColor = self.menus[name].optionColor,
-				highlightColor = self.menus[name].buttonHighlightColor,
-				clbk = function() self:openMenu(self.previousMenu, self.previousPage) end
-			})
-			--[[ Main Menu Button ]]--
-			buttonRectHeight = self.menus[name].optionFontSize + 4
-			buttonRectX = self.panelNavigationDisplay:w() - self.mainMenuBorderWidth - self.indentColumns - buttonRectWidth
-			if #self.menus[name].pages < 2 then
-				buttonRectY = (self.panelNavigationDisplay:h() / 2) - (buttonRectHeight / 2)
-			else
-				buttonRectY = self.panelNavigationDisplay:h() - self.mainMenuBorderWidth - self.indentColumns - buttonRectHeight
-			end
-			drawRect(self.panelNavigationDisplay, "main_menu_button_rect", buttonRectX, buttonRectY, buttonRectWidth, buttonRectHeight, self.menus[name].buttonRectHighlightColor, { rectLayer = self.baseLayer + 3 }):set_visible(false)
-			self.panelNavigationDisplay:text({name = "main_menu_button_text", text = "Main Menu", x = -6-self.mainMenuBorderWidth-self.indentColumns, y = buttonRectY+2, layer = self.baseLayer + 4, color = self.menus[name].optionColor, font = self.menus[name].optionFont, font_size = self.menus[name].optionFontSize, align = "right"})
-			table.insert(self.activeButtons, {
-				text = "main_menu_button_text", 
-				rect = "main_menu_button_rect",
-				help = "Opens the Main Menu",
-				normalColor = self.menus[name].optionColor,
-				highlightColor = self.menus[name].buttonHighlightColor,
-				clbk = function() if self:getMainMenu() ~= self.currentMenu then self:openMainMenu() end end
-			})
 		end
 	end
 	
