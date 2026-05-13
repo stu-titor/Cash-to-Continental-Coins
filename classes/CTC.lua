@@ -78,7 +78,7 @@ end
 -- ── Menu ─────────────────────────────────────────────────────────────────────
 
 function CTC.loadMenu()
-    CTC.menu:addMainMenu("main_menu", {title = "Cash → Continental Coins"})
+    CTC.menu:addMainMenu("main_menu", {title = "Cash to Coins"})
 
     local spending = CTC.getSpending()
     local coins    = CTC.getCoins()
